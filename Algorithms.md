@@ -4,3 +4,4 @@
   Which classifications apply to Euclid's algorithm for finding the least common denominator? 
   Answer:
   exact and deterministic
+- An algorithm that is deterministic always produces the same outputs from a given set of inputs .
