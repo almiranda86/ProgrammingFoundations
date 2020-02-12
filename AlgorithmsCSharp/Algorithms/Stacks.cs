@@ -5,73 +5,38 @@ using System.Text;
 
 namespace AlgorithmsCSharp
 {
-    public class Stacks
+    public class Stacks<T> : ICommonDataStructures<T>
     {
-        private dynamic[] _Stacks = default;
+        private T[] items;
+        private int total;
+        private const int initValue = 8;
+
+        public Stacks()
+        {
+            items = new T[initValue];
+            total = 0;
+        }
 
         public int Count()
         {
-            return _Stacks.Length;
+            return total;
         }
 
-        public void Push(dynamic item)
+        public T Pop()
         {
-            if (_Stacks == null)
-            {
-                PushFirstItem(item);
-            }
-            else if (_Stacks.Length > 0)
-            {
-                PushRearangeStack(item);
-            }
-        }
-
-        public dynamic Pop()
-        {
-            int pos = _Stacks.Length;
-            var item = _Stacks[pos - 1];
-
-            PopRearangeStack();
-
+            T item = items[--total];
+            items[total] = default(T);
             return item;
         }
 
-        private void PushFirstItem(dynamic item)
+        public void Push(T item)
         {
-            _Stacks = new dynamic[1];
-            InsertStackItem(_Stacks, item);
-        }
-
-        private void PushRearangeStack(dynamic item)
-        {
-            dynamic tempStack = _Stacks;
-            int posInit = _Stacks.Length;
-            _Stacks = new dynamic[posInit + 1];
-            
-            InsertStackItem(_Stacks, item);
-
-            for (int i = 0; i < tempStack.Length; i++)
+            if (total == items.Length)
             {
-                _Stacks[i] = tempStack[i];
+                Array.Resize(ref items, (items.Length + 1) * 2);
             }
-        }
 
-        private void InsertStackItem(dynamic Stack, dynamic item)
-        {
-            int pos = Stack.Length;
-            Stack[pos - 1] = item;
-        }
-
-        private void PopRearangeStack()
-        {
-            dynamic tempStack = _Stacks;
-            int posInit = _Stacks.Length;
-            _Stacks = new dynamic[posInit - 1];
-
-            for (int i = 0; i < tempStack.Length - 1; i++)
-            {
-                _Stacks[i] = tempStack[i];
-            }
+            items[total++] = item;
         }
     }
 }

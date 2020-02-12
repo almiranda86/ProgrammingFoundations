@@ -9,9 +9,9 @@ namespace AlgoritmTest
     [TestClass]
     public class QueuesTest
     {
-        private Queues InsertItems()
+        private Queues<int> InsertItems()
         {
-            Queues queue = new Queues();
+            Queues<int> queue = new Queues<int>();
             queue.Push(1);
             queue.Push(2);
             queue.Push(3);
@@ -27,7 +27,7 @@ namespace AlgoritmTest
         [TestMethod]
         public void PushToQueueTest()
         {
-            Queues stack = InsertItems();
+            Queues<int> stack = InsertItems();
             int total = stack.Count();
             Assert.AreEqual(9, total);
         }
@@ -36,7 +36,7 @@ namespace AlgoritmTest
         [TestMethod]
         public void PopFromQueueTest()
         {
-            Queues queue = InsertItems();
+            Queues<int> queue = InsertItems();
             int total = queue.Count();
             Assert.AreEqual(9, total);
             var item = queue.Pop();

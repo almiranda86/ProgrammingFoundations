@@ -4,72 +4,40 @@ using System.Text;
 
 namespace AlgorithmsCSharp
 {
-    public class Queues
+    public class Queues<T> : ICommonDataStructures<T>
     {
-        private dynamic[] _Queues = default;
+        private T[] items;
+        private int total;
+        private const int initValue = 8;
+        private int queueHead = 0;
+
+        public Queues()
+        {
+            items = new T[initValue];
+            total = 0;
+        }
 
         public int Count()
         {
-            return _Queues.Length;
+            return total;
         }
 
-        public void Push(dynamic item)
+        public T Pop()
         {
-            if (_Queues == null)
-            {
-                PushFirstItem(item);
-            }
-            else if (_Queues.Length > 0)
-            {
-                PushRearangeQueue(item);
-            }
-        }
-
-        public dynamic Pop()
-        {
-            var item = _Queues[0];
-
-            PopRearangeQueue();
-
+            T item = items[queueHead];
+            items[queueHead] = default(T);
+            queueHead = (queueHead + 1) % items.Length;
             return item;
         }
 
-        private void PushFirstItem(dynamic item)
+        public void Push(T item)
         {
-            _Queues = new dynamic[1];
-            InsertQueueItem(_Queues, item);
-        }
-
-        private void PushRearangeQueue(dynamic item)
-        {
-            dynamic tempQueues = _Queues;
-            int posInit = _Queues.Length;
-            _Queues = new dynamic[posInit + 1];
-
-            InsertQueueItem(_Queues, item);
-
-            for (int i = 0; i < tempQueues.Length; i++)
+            if (total == items.Length)
             {
-                _Queues[i] = tempQueues[i];
+                Array.Resize(ref items, (items.Length + 1) * 2);
             }
-        }
 
-        private void InsertQueueItem(dynamic Queue, dynamic item)
-        {
-            int pos = Queue.Length;
-            Queue[pos - 1] = item;
-        }
-
-        private void PopRearangeQueue()
-        {
-            dynamic tempQueue = _Queues;
-            int posInit = _Queues.Length;
-            _Queues = new dynamic[posInit - 1];
-
-            for (int i = 0; i < tempQueue.Length - 1; i++)
-            {
-                _Queues[i] = tempQueue[i + 1];
-            }
+            items[total++] = item;
         }
     }
 }

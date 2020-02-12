@@ -9,9 +9,9 @@ namespace AlgoritmTest
     [TestClass]
     public class StacksTest
     {
-        private Stacks InsertItems()
+        private Stacks<int> InsertItems()
         {
-            Stacks stacks = new Stacks();
+            Stacks<int> stacks = new Stacks<int>();
             stacks.Push(1);
             stacks.Push(2);
             stacks.Push(3);
@@ -27,7 +27,7 @@ namespace AlgoritmTest
         [TestMethod]
         public void PushToStackTest()
         {
-            Stacks stack = InsertItems();
+            Stacks<int> stack = InsertItems();
             int total = stack.Count();
             Assert.AreEqual(9, total);
         }
@@ -36,7 +36,7 @@ namespace AlgoritmTest
         [TestMethod]
         public void PopFromStackTest()
         {
-            Stacks stack = InsertItems();
+            Stacks<int> stack = InsertItems();
             int total = stack.Count();
             Assert.AreEqual(9, total);
             var item = stack.Pop();
