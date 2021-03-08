@@ -1,12 +1,11 @@
 function GCD(a, b){ 
 
-    while(b != 0){
-        var temp = a;
-        a = b;
-        b = temp % b
+    if(b === 0){
+        return a;
+    }else{
+        var r = a % b;
+        return GCD(b, r);
     }
-
-    return a;
 }
 
 

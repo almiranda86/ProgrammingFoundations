@@ -6,6 +6,12 @@ Example:
 GCD of 20 and 8 is 4   
 because 8/4 is 2 and 20 / 4 is 5
 
+| GCD (20, 8) |             |             |
+|------------	|------------	|------------	|
+|a            |b            |r            |
+|20           |8            |4            |
+|8            |4            |0            |
+
 
  # Steps
  1. For two integers, a and b, where a > b, divide a by b.   
